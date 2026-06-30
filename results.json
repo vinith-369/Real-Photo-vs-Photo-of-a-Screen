@@ -1,0 +1,26 @@
+{
+  "SVM_Linear": {
+    "cv_accuracy_mean": 0.8699999999999999,
+    "cv_accuracy_std": 0.05099019513592783,
+    "cv_f1_mean": 0.8733333333333333,
+    "cv_f1_std": 0.050718197926454635,
+    "test_accuracy": 0.9210526315789473,
+    "test_f1": 0.926829268292683,
+    "test_precision": 0.95,
+    "test_recall": 0.9047619047619048,
+    "test_confusion_matrix": [
+      [
+        16,
+        1
+      ],
+      [
+        2,
+        19
+      ]
+    ],
+    "best_params": {
+      "C": 0.01
+    },
+    "train_time_sec": 1.58
+  }
+}
