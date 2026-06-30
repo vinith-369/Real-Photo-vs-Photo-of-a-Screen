@@ -37,6 +37,7 @@ Evaluated via stratified 5-fold cross-validation on 100 training images, and tes
 | Metric | Value |
 |--------|-------|
 | **Latency** | **~435 ms** per image (MacBook CPU) |
+| **Cost (On-Device)** | **$0.00** (runs free on the user's phone) |
 | **Cost (Cloud Server)** | **~$10.00** per million images |
 
 ### Cost Assumptions
@@ -46,6 +47,6 @@ Evaluated via stratified 5-fold cross-validation on 100 training images, and tes
 
 ## What I'd Improve
 
-- **Cython/C++ Rewrite**: Porting the feature extraction pipeline (especially LBP and FFT) to C++ would easily drop latency to <10ms per image.
-- **Cross-device robustness**: The current features are tuned for specific screen patterns; adding scanner / webcam / printed photo variants would improve generalisation.
-- **Ensemble with a tiny CNN**: A MobileNet-v3 head (~200 KB) could complement the handcrafted features for tricky edge cases where classical CV falls short.
+- **Data Collection / Augmentation**: The model was trained on a highly constrained dataset (~100 images). Expanding the dataset to include a wider variety of screens (OLEDs, old LCDs, e-ink), different lighting conditions, and applying data augmentation (rotations, brightness jittering) would massively improve generalisation and prevent overfitting.
+- **Cross-device robustness**: The current features are tuned for specific screen patterns; adding scanner / webcam / printed photo variants would improve robustness against different types of fraud.
+- **Ensemble with a tiny CNN**: A MobileNet-v3 head (~200 KB) could complement the handcrafted features for tricky edge cases (e.g. high-res printed photos) where classical computer vision falls short.
