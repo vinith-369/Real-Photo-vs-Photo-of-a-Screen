@@ -13,7 +13,18 @@
 
 | Rank | Model | CV Accuracy | CV F1 | Test Accuracy | Test F1 | Test Precision | Test Recall | Time |
 |------|-------|-------------|-------|---------------|---------|----------------|-------------|------|
-| 1 | **SVM_Linear** 👑 | 0.8700 ± 0.0510 | 0.8733 ± 0.0507 | 0.9211 | 0.9268 | 0.9500 | 0.9048 | 1.6s |
+| 1 | **VotingEnsemble** | 0.8800 ± 0.0678 | 0.8829 ± 0.0666 | 0.9211 | 0.9268 | - | - | - |
+| 2 | **SVM_Linear** 👑 | 0.8700 ± 0.0510 | 0.8733 ± 0.0507 | 0.9211 | 0.9268 | 0.9500 | 0.9048 | 0.0s |
+| 3 | **StackingEnsemble** | 0.8800 ± 0.0678 | 0.8829 ± 0.0666 | 0.8947 | 0.9000 | - | - | - |
+| 4 | **SVM_RBF** | 0.8700 ± 0.0400 | 0.8714 ± 0.0394 | 0.8947 | 0.9091 | 0.8696 | 0.9524 | 0.1s |
+| 5 | **LogisticRegression** | 0.8700 ± 0.0510 | 0.8723 ± 0.0492 | 0.8947 | 0.9000 | 0.9474 | 0.8571 | 0.9s |
+| 6 | **ExtraTrees** | 0.8800 ± 0.0245 | 0.8805 ± 0.0315 | 0.8684 | 0.8837 | 0.8636 | 0.9048 | 14.7s |
+| 7 | **BaggingSVM** | 0.8600 ± 0.0583 | 0.8704 ± 0.0543 | 0.8684 | 0.8837 | 0.8636 | 0.9048 | 1.4s |
+| 8 | **RandomForest** | 0.8600 ± 0.0583 | 0.8576 ± 0.0649 | 0.8684 | 0.8837 | 0.8636 | 0.9048 | 19.0s |
+| 9 | **GradientBoosting** | 0.8600 ± 0.0735 | 0.8568 ± 0.0769 | 0.8684 | 0.8780 | 0.9000 | 0.8571 | 55.8s |
+| 10 | **KNN** | 0.8700 ± 0.0600 | 0.8584 ± 0.0687 | 0.8684 | 0.8780 | 0.9000 | 0.8571 | 0.1s |
+| 11 | **HistGradientBoosting** | 0.8200 ± 0.0400 | 0.8137 ± 0.0489 | 0.8421 | 0.8571 | 0.8571 | 0.8571 | 80.1s |
+| 12 | **AdaBoost** | 0.8000 ± 0.0316 | 0.7958 ± 0.0337 | 0.8158 | 0.8444 | 0.7917 | 0.9048 | 5.0s |
 
 ## ✅ Best Model: **SVM_Linear**
 
@@ -35,53 +46,73 @@
 ## 📊 All Confusion Matrices (Test Set)
 
 ### SVM_Linear
-
 | | Predicted Real | Predicted Screen |
 |---|---|---|
 | **Actual Real** | 16 | 1 |
 | **Actual Screen** | 2 | 19 |
 
-## 🔬 Top 30 Most Important Features (Mutual Information)
+### VotingEnsemble
+| | Predicted Real | Predicted Screen |
+|---|---|---|
+| **Actual Real** | 16 | 1 |
+| **Actual Screen** | 2 | 19 |
 
-| Rank | Feature | MI Score |
-|------|---------|----------|
-| 1 | `fft_band_2_energy` | 0.2275 |
-| 2 | `fft_std` | 0.2041 |
-| 3 | `fft_band_3_energy` | 0.2015 |
-| 4 | `color_sat_mean` | 0.1967 |
-| 5 | `fft_band_1_energy` | 0.1913 |
-| 6 | `fft_band_4_energy` | 0.1888 |
-| 7 | `fft_band_0_energy` | 0.1870 |
-| 8 | `color_hue_mean` | 0.1745 |
-| 9 | `hough_line_count` | 0.1603 |
-| 10 | `fft_total_energy` | 0.1297 |
-| 11 | `color_b_entropy` | 0.1245 |
-| 12 | `canny_density_50_100` | 0.1238 |
-| 13 | `color_rb_corr` | 0.1185 |
-| 14 | `lap_var_k5` | 0.0955 |
-| 15 | `color_hue_std` | 0.0951 |
-| 16 | `lbp_bin_9` | 0.0894 |
-| 17 | `color_gb_corr` | 0.0891 |
-| 18 | `sobel_mag_std` | 0.0876 |
-| 19 | `tenengrad_var` | 0.0861 |
-| 20 | `lap_mean_k7` | 0.0857 |
-| 21 | `lbp_bin_28` | 0.0837 |
-| 22 | `lbp_bin_18` | 0.0799 |
-| 23 | `glare_dynamic_range` | 0.0790 |
-| 24 | `lbp_bin_16` | 0.0787 |
-| 25 | `hough_avg_length` | 0.0783 |
-| 26 | `color_cb_std` | 0.0782 |
-| 27 | `fft_mean` | 0.0773 |
-| 28 | `lbp_bin_31` | 0.0754 |
-| 29 | `brenner_mean` | 0.0726 |
-| 30 | `color_cb_mean` | 0.0705 |
+### SVM_RBF
+| | Predicted Real | Predicted Screen |
+|---|---|---|
+| **Actual Real** | 14 | 3 |
+| **Actual Screen** | 1 | 20 |
 
-## 📋 Per-Model Best Hyperparameters
+### LogisticRegression
+| | Predicted Real | Predicted Screen |
+|---|---|---|
+| **Actual Real** | 16 | 1 |
+| **Actual Screen** | 3 | 18 |
 
-### SVM_Linear
+### StackingEnsemble
+| | Predicted Real | Predicted Screen |
+|---|---|---|
+| **Actual Real** | 16 | 1 |
+| **Actual Screen** | 3 | 18 |
 
-```json
-{
-  "C": 0.01
-}
-```
+### ExtraTrees
+| | Predicted Real | Predicted Screen |
+|---|---|---|
+| **Actual Real** | 14 | 3 |
+| **Actual Screen** | 2 | 19 |
+
+### BaggingSVM
+| | Predicted Real | Predicted Screen |
+|---|---|---|
+| **Actual Real** | 14 | 3 |
+| **Actual Screen** | 2 | 19 |
+
+### RandomForest
+| | Predicted Real | Predicted Screen |
+|---|---|---|
+| **Actual Real** | 14 | 3 |
+| **Actual Screen** | 2 | 19 |
+
+### GradientBoosting
+| | Predicted Real | Predicted Screen |
+|---|---|---|
+| **Actual Real** | 15 | 2 |
+| **Actual Screen** | 3 | 18 |
+
+### KNN
+| | Predicted Real | Predicted Screen |
+|---|---|---|
+| **Actual Real** | 15 | 2 |
+| **Actual Screen** | 3 | 18 |
+
+### HistGradientBoosting
+| | Predicted Real | Predicted Screen |
+|---|---|---|
+| **Actual Real** | 14 | 3 |
+| **Actual Screen** | 3 | 18 |
+
+### AdaBoost
+| | Predicted Real | Predicted Screen |
+|---|---|---|
+| **Actual Real** | 12 | 5 |
+| **Actual Screen** | 2 | 19 |
