@@ -1,4 +1,4 @@
-# Screen Detector: Spot the Fake Photo
+# Real Photo vs Photo of a Screen
 
 This project is a high-accuracy classical machine learning classifier designed to determine whether a given image is a genuine "real photo" or a "photo of a screen" (a re-capture/fraud). 
 
@@ -25,3 +25,7 @@ You can predict the fraud probability of a single image using `predict.py`. It o
 ```bash
 python predict.py "path/to/image.jpg"
 ```
+
+## 📖 Approach Note
+
+For a detailed breakdown of the 110 mathematical features used, the machine learning grid search selection process, and latency/cost metrics, please read [approach_note.md](approach_note.md).
