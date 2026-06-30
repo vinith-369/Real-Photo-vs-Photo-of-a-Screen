@@ -28,4 +28,4 @@ python predict.py "path/to/image.jpg"
 
 ## 📖 Approach Note
 
-For a detailed breakdown of the 110 mathematical features used, the machine learning grid search selection process, and latency/cost metrics, please read [approach_note.md](approach_note.md).
+For a detailed breakdown of the 110 mathematical features used, the machine learning grid search selection process, and latency/cost metrics, please read [approach_note.md](Approach_Note.md).
