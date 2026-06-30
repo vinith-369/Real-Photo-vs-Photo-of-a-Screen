@@ -51,9 +51,7 @@ sys.path.insert(0, SCRIPT_DIR)
 from feature_extraction import extract_features, FEATURE_NAMES
 
 
-# ---------------------------------------------------------------------------
 # Data Loading
-# ---------------------------------------------------------------------------
 
 def load_dataset():
     """Load all image paths and labels."""
@@ -96,10 +94,7 @@ def extract_all_features(paths, label_name=""):
     return X, valid_paths, feature_names
 
 
-# ---------------------------------------------------------------------------
 # Model Definitions
-# ---------------------------------------------------------------------------
-
 def get_models_and_params():
     """Return dict of model_name -> (estimator, param_grid)."""
     models = OrderedDict()
@@ -110,10 +105,7 @@ def get_models_and_params():
     return models
 
 
-# ---------------------------------------------------------------------------
 # Training
-# ---------------------------------------------------------------------------
-
 def train_and_evaluate(X_train, y_train, X_test, y_test, feature_names):
     """Train all models with GridSearchCV, evaluate on held-out test set."""
     scaler = StandardScaler()
@@ -205,10 +197,7 @@ def train_and_evaluate(X_train, y_train, X_test, y_test, feature_names):
     return results, best_overall_model, best_overall_name, scaler
 
 
-# ---------------------------------------------------------------------------
 # Feature Importance
-# ---------------------------------------------------------------------------
-
 def compute_feature_importance(X_train, y_train, feature_names, scaler):
     """Compute feature importance via mutual information."""
     X_scaled = scaler.transform(X_train)
@@ -219,9 +208,7 @@ def compute_feature_importance(X_train, y_train, feature_names, scaler):
     return importance
 
 
-# ---------------------------------------------------------------------------
 # Report Generation
-# ---------------------------------------------------------------------------
 
 def generate_report(results, feature_importance, best_name, n_train, n_test, feature_names):
     """Generate markdown results report."""
@@ -302,9 +289,6 @@ def generate_report(results, feature_importance, best_name, n_train, n_test, fea
     return "\n".join(lines)
 
 
-# ===========================================================================
-# Main
-# ===========================================================================
 
 def main():
     print("=" * 80)
