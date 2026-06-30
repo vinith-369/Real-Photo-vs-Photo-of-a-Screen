@@ -19,17 +19,12 @@ import cv2
 from PIL import Image
 from scipy import stats as sp_stats
 
-# Optional: HEIC support
 try:
     from pillow_heif import register_heif_opener
     register_heif_opener()
 except ImportError:
     pass
 
-
-# ---------------------------------------------------------------------------
-# Utility helpers
-# ---------------------------------------------------------------------------
 
 def _load_image(path, target_size=512):
     """Load image via PIL (HEIC-safe), resize to target, return RGB numpy array."""
@@ -53,9 +48,7 @@ def _safe_stat(arr):
     return m, s, sk, ku
 
 
-# ---------------------------------------------------------------------------
 # 1. Sharpness / Blur features
-# ---------------------------------------------------------------------------
 
 def _sharpness_features(gray):
     """Laplacian variance at multiple scales + Tenengrad + Brenner."""
@@ -81,10 +74,7 @@ def _sharpness_features(gray):
     return feats
 
 
-# ---------------------------------------------------------------------------
 # 2. Edge analysis features
-# ---------------------------------------------------------------------------
-
 def _edge_features(gray):
     """Canny edge density at multiple thresholds + Sobel stats + HoughLines."""
     feats = {}
@@ -135,9 +125,7 @@ def _edge_features(gray):
     return feats
 
 
-# ---------------------------------------------------------------------------
 # 3. Frequency domain features (Moiré / screen grid detection)
-# ---------------------------------------------------------------------------
 
 def _frequency_features(gray, rgb):
     """FFT analysis on grayscale + chroma channels."""
@@ -197,9 +185,7 @@ def _frequency_features(gray, rgb):
     return feats
 
 
-# ---------------------------------------------------------------------------
 # 4. Color & Chrominance features
-# ---------------------------------------------------------------------------
 
 def _color_features(rgb):
     """Color statistics across multiple color spaces."""
@@ -239,9 +225,7 @@ def _color_features(rgb):
     return feats
 
 
-# ---------------------------------------------------------------------------
 # 5. Texture features (LBP)
-# ---------------------------------------------------------------------------
 
 def _lbp_features(gray):
     """Local Binary Pattern histogram features — captures micro-texture."""
@@ -278,10 +262,7 @@ def _lbp_features(gray):
     return feats
 
 
-# ---------------------------------------------------------------------------
 # 6. Glare / Highlight detection
-# ---------------------------------------------------------------------------
-
 def _glare_features(gray, rgb):
     """Detect bright spots and glare patterns typical of screen photos."""
     feats = {}
@@ -320,9 +301,7 @@ def _glare_features(gray, rgb):
     return feats
 
 
-# ---------------------------------------------------------------------------
 # 7. Noise estimation
-# ---------------------------------------------------------------------------
 
 def _noise_features(gray):
     """Estimate sensor noise characteristics."""
@@ -360,10 +339,7 @@ def _noise_features(gray):
     return feats
 
 
-# ---------------------------------------------------------------------------
 # 8. GLCM (Gray-Level Co-occurrence Matrix) texture features
-# ---------------------------------------------------------------------------
-
 def _glcm_features(gray):
     """Compute GLCM-based texture features: contrast, dissimilarity, homogeneity, energy, correlation."""
     feats = {}
@@ -409,12 +385,9 @@ def _glcm_features(gray):
     return feats
 
 
-# ===========================================================================
 # Public API
-# ===========================================================================
 
-FEATURE_NAMES = None  # Set on first call
-
+FEATURE_NAMES = None  
 
 def extract_features(image_path):
     """
