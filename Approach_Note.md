@@ -37,7 +37,6 @@ Evaluated via stratified 5-fold cross-validation on 100 training images, and tes
 | Metric | Value |
 |--------|-------|
 | **Latency** | **~435 ms** per image (MacBook CPU) |
-| **Cost (On-Device)** | **$0.00** (runs free on the user's phone) |
 | **Cost (Cloud Server)** | **~$10.00** per million images |
 
 ### Cost Assumptions
